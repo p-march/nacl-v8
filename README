@@ -1,4 +1,19 @@
-NaCl port of V8 JavaScript Engine (http://code.google.com/p/v8/)
+This is a research project which goal is to allow Native Client SFI sandbox
+to support sandboxing self-modifying code. The details are in nacljit.pdf.
+
+Native Client (NaCl) is a production quality SFI sandbox used in the Google
+Chrome browser to safely run untrusted (downloaded from the network) x86 code
+in isolated environment (sandbox) so that the untrusted code cannot tamper with
+the browser's components and disclosed sensitive data from them, e.g.,
+sensitive data of web pages, web applications, user sensitive data such as
+bookmarks, cookies, browsing history.
+
+V8 is a JavaScript engine employed by the Google Chrome browser and node.js
+projects. It heavily relies on runtime code modification to implement
+dynamic optimizations such as inline caching. This patches modify NaCl and the
+V8 engine to allow NaCl to run V8 in a sandboxed environment with the support
+of dynamically modifiable code at acceptable performance cost as demonstrated
+by benchmarks.
 
 Major V8 modifications:
 - Splitting JavaScript Code objects to separate code and meta-data. NaCl does
@@ -15,7 +30,7 @@ Major V8 modifications:
   runtime calls.
 - Code emitted by V8 complies with NaCl security constraints (e.g. sandboxing
   of indirect jumps, instruction alignment).
- 
+
 Details of NaCl and V8 modifications are in the technical paper (nacljit.pdf)
 which appears in 2011 ACM SIGPLAN Conference on Programming Language Design and
 Implementation.
